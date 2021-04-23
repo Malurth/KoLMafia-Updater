@@ -143,7 +143,7 @@ namespace KoLMafia_Updater {
         }
 
         void deleteOldCopies() {
-            string[] jars = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.jar");
+            string[] jars = Directory.GetFiles(Directory.GetCurrentDirectory(), "KoLmafia*.jar");
             if (jars.Length <= 1) {
                 return;
             } else {
