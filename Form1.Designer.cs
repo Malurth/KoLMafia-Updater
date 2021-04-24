@@ -84,7 +84,20 @@ namespace KoLMafia_Updater {
         private void launchMafia() {
             Process p = new Process();
             p.StartInfo.FileName = "javaw";
-            p.StartInfo.Arguments = "-jar \"" + localLatestFullPath + "\"";
+            if (localLatestFullPath.Contains("KoLmafia")) {
+                p.StartInfo.Arguments = "-jar \"" + localLatestFullPath + "\"";
+            } else {
+                string[] jars = Directory.GetFiles(Directory.GetCurrentDirectory(), "KoLmafia*.jar");
+                if (jars.Length == 1) {
+                    p.StartInfo.Arguments = "-jar \"" + jars[0] + "\"";
+                } else if (jars.Length == 0) {
+                    WriteLog("Unable to find valid KoLmafia .jar to launch. Aborting.");
+                    return;
+                } else {
+                    WriteLog("Found multiple valid KoLmafia .jars to launch, and I don't feel like implementing a function that makes an educated guess on which to launch. Aborting.");
+                    return;
+                }
+            }
             try {
                 p.Start();
             } catch (Exception e) {
