@@ -162,7 +162,11 @@ namespace KoLMafia_Updater {
             } else {
                 foreach (string file in jars) {
                     if (!file.Contains(KoLMafia)) {
-                        File.Delete(file);
+                        try {
+                            File.Delete(file);
+                        } catch (ArgumentException e) {
+                            WriteLog(e.ToString());
+                        }
                     }
                 }
             }
