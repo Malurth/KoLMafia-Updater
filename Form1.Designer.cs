@@ -164,7 +164,7 @@ namespace KoLMafia_Updater {
                     if (!file.Contains(KoLMafia)) {
                         try {
                             File.Delete(file);
-                        } catch (ArgumentException e) {
+                        } catch (IOException e) {
                             WriteLog(e.ToString());
                         }
                     }
