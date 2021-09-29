@@ -84,7 +84,7 @@ namespace KoLMafia_Updater {
         private void launchMafia() {
             Process p = new Process();
             p.StartInfo.FileName = "javaw";
-            if (localLatestFullPath.Contains("KoLmafia")) {
+            if (localLatestFullPath != null && localLatestFullPath.Contains("KoLmafia")) {
                 p.StartInfo.Arguments = "-jar \"" + localLatestFullPath + "\"";
             } else {
                 string[] jars = Directory.GetFiles(Directory.GetCurrentDirectory(), "KoLmafia*.jar");
